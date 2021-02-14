@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if [ "command -v pandoc" ]; then
+    echo "All dependencies installed."
+    exit 0
+else
+    echo "You'll need to install pandoc to use this repository."
+    exit 1
+fi

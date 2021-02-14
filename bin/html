@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+mkdir -p output/html
+cp -r notes/* output/html
+
+cd ./output/html
+
+site_files=$(find . -name "*.md")
+
+for entry in $site_files 
+do
+  output_file="$(basename $entry .md).html"
+  pandoc $entry --highlight-style pygments --metadata title="$(basename "$entry" .md)" --template=../../template.html -o $output_file
+  sed -Ei 's/.md/.html/g' $output_file 
+  rm $entry
+done

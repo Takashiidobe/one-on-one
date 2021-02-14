@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+mkdir -p output/pdf
+cp -r notes/* output/pdf
+
+cd ./output/pdf
+site_files=$(find . -name "*.md")
+
+
+for entry in $site_files 
+do
+  pandoc $entry -o  "$(basename $entry .md).pdf"
+  rm $entry
+done
